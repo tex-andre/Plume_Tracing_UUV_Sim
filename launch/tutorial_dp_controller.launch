@@ -9,9 +9,9 @@
   <arg name="Kd" default="9077.459,9077.459,9077.459,18880.925,18880.925,18880.925"/>
   <arg name="Ki" default="321.417,321.417,321.417,2096.951,2096.951,2096.951"/>
 
-  <arg name="output_dir" default="$(find uuv_thruster_manager)/config/$(arg model_name)"/>
-  <arg name="config_file" default="$(find uuv_thruster_manager)/config/$(arg model_name)/thruster_manager.yaml"/>
-  <arg name="tam_file" default="$(find uuv_thruster_manager)/config/$(arg model_name)/TAM.yaml"/>
+  <arg name="output_dir" default="$(find rexrov2_control)/config/"/>
+  <arg name="config_file" default="$(find rexrov2_control)/config/thruster_manager.yaml"/>
+  <arg name="tam_file" default="$(find rexrov2_control)/config/TAM.yaml"/>
 
   <include file="$(find uuv_thruster_manager)/launch/thruster_manager.launch">
       <arg name="uuv_name" value="$(arg uuv_name)"/>
