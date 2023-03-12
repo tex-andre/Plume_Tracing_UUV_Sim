@@ -97,7 +97,7 @@ def call_goto(wp, gotoservice, interpolator):
 	try:
 		res = gotoservice(wp,wp.max_forward_speed,str(interpolator))
 		#print("Go To service call successful: " + str(res))
-	except rospy.ServiceException, e:
+	except rospy.ServiceException as e:
 		print("Service call failed: %s"%e)
 
 #Check distance between two locations
@@ -453,12 +453,12 @@ if __name__=='__main__':
 				marker.pose.position.y = lost_pnts[-1][1]
 				marker.pose.position.z = lost_pnts[-1][2]
 				marker.pose.orientation.x = 0
-			  	marker.pose.orientation.y = 0
-			  	marker.pose.orientation.z = 0
-			  	marker.pose.orientation.w = 1
-			  	marker.scale.x = 1.0
-			  	marker.scale.y = 1.0
-			  	marker.scale.z = 1.0
+				marker.pose.orientation.y = 0
+				marker.pose.orientation.z = 0
+				marker.pose.orientation.w = 1
+				marker.scale.x = 1.0
+				marker.scale.y = 1.0
+				marker.scale.z = 1.0
 				marker.color.r = 1.0
 				marker.color.g = 1.0
 				marker.color.b = 1.0
