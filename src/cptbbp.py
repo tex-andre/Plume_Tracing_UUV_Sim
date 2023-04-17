@@ -176,7 +176,7 @@ def track_in(gotoservice,interpolator):
 			print("lhs: " + str(lhs))
 			offsetrad = lhs*np.deg2rad(BETA_OFFSET)
 			new_heading = np.dot(2,rotate_upflow(offsetrad))
-			threed_heading = np.array([new_heading[0],new_heading[1],0.0])
+			threed_heading = np.array([new_heading[0][0],new_heading[1][0],0.0])
 			new_waypoint = np.add(threed_heading,auv_location)
 			
 			wp = make_waypoint(new_waypoint[0], new_waypoint[1], new_waypoint[2])
@@ -272,10 +272,12 @@ def reacquire(gotoservice, interpolator):
 		dleft = 5*rotate_upflow(angle2)
 		uright = 5*rotate_upflow(angle3)
 		dright = 5*rotate_upflow(angle4)
-		bowtie_uleft = np.array([auv_location[0]+uleft[0], auv_location[1]+uleft[1], auv_location[2]])
-		bowtie_dleft = np.array([auv_location[0]+dleft[0], auv_location[1]+dleft[1], auv_location[2]])
-		bowtie_uright = np.array([auv_location[0]+uright[0], auv_location[1]+uright[1], auv_location[2]])
-		bowtie_dright = np.array([auv_location[0]+dright[0], auv_location[1]+dright[1], auv_location[2]])
+		print(auv_location)
+		print(uleft)
+		bowtie_uleft = np.array([auv_location[0]+uleft[0][0], auv_location[1]+uleft[1][0], auv_location[2]])
+		bowtie_dleft = np.array([auv_location[0]+dleft[0][0], auv_location[1]+dleft[1][0], auv_location[2]])
+		bowtie_uright = np.array([auv_location[0]+uright[0][0], auv_location[1]+uright[1][0], auv_location[2]])
+		bowtie_dright = np.array([auv_location[0]+dright[0][0], auv_location[1]+dright[1][0], auv_location[2]])
 
 		if(bowtie_step == -1):	#go to center of bowtie
 			bowtie_step = 0
@@ -332,6 +334,7 @@ def find_plume(gotoservice, interpolator):
 			elif(findpos == -1):
 				findpos = 1
 			cross = rotate_upflow(findpos*np.pi/2)
+			print('At cross: ',cross)
 			done = False
 			while(not done):
 				cross += cross
@@ -464,5 +467,5 @@ if __name__=='__main__':
 				marker.color.b = 1.0
 				marker.color.a = 1.0
 				marker.lifetime = rospy.Duration(0)
-
+				print('Publishing marker')
 				markerpub.publish(marker)
